@@ -39,6 +39,10 @@ Image::Image(int height_ = 100, int width_ = 100, Pixel backColor = WHITE)
 }
 
 /*
+	If the color is defined from 
+*/
+
+/*
 	Writes the image to the file.
 */
 void Image::write(const char *filename)

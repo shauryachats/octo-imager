@@ -13,7 +13,7 @@ int main()
 	//create a new point at 50x50 which is black in color.
 	for (int i = 0; i < 100; ++i)
 	{
-		Point *p = new Point(rand()%200,rand()%200, RED);
+		Point *p = new Point(rand()%200,rand()%200, Pixel("#00F000"));
 		im.addtoqueue(p);
 	}
 	//write image to file.
