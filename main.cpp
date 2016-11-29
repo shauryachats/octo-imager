@@ -1,10 +1,21 @@
-#include "pixel.h"
-#include "image.h"
-#include <iostream>
-using namespace std;
+/**
+	octo-imager, a NetPBM imager library.
+*/
+
+#include "point.h"
+#include <stdlib.h>
 
 int main()
 {
-	Image im(1024,768,GREEN);
+	srand(time(NULL));
+	//create an image file of 100x100, background in green color.
+	Image im(200,200,BLUE);
+	//create a new point at 50x50 which is black in color.
+	for (int i = 0; i < 100; ++i)
+	{
+		Point *p = new Point(rand()%200,rand()%200, RED);
+		im.addtoqueue(p);
+	}
+	//write image to file.
 	im.write("a.ppm");
 }
