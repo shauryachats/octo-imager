@@ -17,7 +17,7 @@ class Image
 public:
 	Image(int, int, Pixel);
 	void write(const char *filename);
-	void add(int y, int x, Pixel p);
+	void add(int, int, Pixel, float);
 	void addtoqueue(Shape*);
 	void drawqueue();	
 	~Image();
@@ -44,7 +44,7 @@ Image::Image(int height_ = 100, int width_ = 100, Pixel backColor = WHITE)
 */
 void Image::write(const char *filename)
 {
-
+	//Draw the geometry queue before writing to file.
 	drawqueue();
 
 	std::ofstream f(filename);
@@ -66,10 +66,12 @@ void Image::write(const char *filename)
 /*
 	Modifying a pixel in the image vector.
 */
-void Image::add(int y, int x, Pixel p)
-{
+void Image::add(int y, int x, Pixel p, float alpha)
+{	
 	if (y >= 0 && y < height && x >= 0 && x < width)
-		image[y][x] = p;
+	{
+		image[y][x] = Alpha(p, image[y][x], alpha);
+	}
 }
 
 

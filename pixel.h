@@ -8,7 +8,7 @@ struct Pixel
 {
 	//for more memory saving, use unsigned char (0 - 255)
 	unsigned char r, g, b;
-	
+
 	//ctors.
 	Pixel() { r = g = b = 0; }
 	Pixel(int r_, int g_, int b_) : r(r_), g(g_), b(b_) {};
@@ -59,6 +59,16 @@ Pixel::Pixel(const char *hexcode)
 	b = strtol(str.substr(5,2).c_str(), &p, 16);	
 }
 
+/**
+	Alpha(Pixel topcolor, Pixel bottomcolor, float alpha) 
+*/
+Pixel Alpha(Pixel topcolor, Pixel bottomcolor, float alpha)
+{
+	int r = topcolor.getRed() * alpha + bottomcolor.getRed() * (1 - alpha);
+	int g = topcolor.getGreen() * alpha + bottomcolor.getGreen() * (1 - alpha);
+	int b = topcolor.getBlue() * alpha + bottomcolor.getBlue() * (1 - alpha);
+	return Pixel(r,g,b);
+}
 
 //Predefined colours.
 const Pixel BLACK(0,0,0);

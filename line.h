@@ -25,14 +25,14 @@ void Line::draw(Image *im)
 	for (int x = std::min(x1,x2); x <= std::max(x1,x2); ++x)
 	{
 		int y = y1 + yslope * (x - x1);
- 		im->add(y,x,p);
+ 		im->add(y,x,p,1);
  	}
 
  	if (!std::isinf(fabs(xslope)))
  	for (int y = std::min(y1,y2); y <= std::max(y1,y2); ++y)
  	{
  		int x = x1 + (y - y1) * xslope;
- 		im->add(y,x,p);
+ 		im->add(y,x,p,1);
  	}
 }
 

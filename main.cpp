@@ -10,7 +10,7 @@ int main()
 {
 	srand(time(NULL));
 	//create an image file of 100x100, background in green color.
-	Image im(500,500,BLUE);
+	Image im(20,20,WHITE);
 	
 	Line *l = new Line(50,21,57,120,BLACK);
 	Line *q = new Line(70,70,100,70,RED);

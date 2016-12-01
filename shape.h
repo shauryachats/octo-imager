@@ -4,6 +4,9 @@
 /*
 	Shape is a purely abstract class, which can just be inherited
 	to define our own shape.
+
+	Every geometric shape should derive public from Shape, to let
+	Image access the draw().
 */
 
 //forward declaration.
