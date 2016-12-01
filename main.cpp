@@ -10,12 +10,12 @@ int main()
 {
 	srand(time(NULL));
 	//create an image file of 100x100, background in green color.
-	Image im(20,20,WHITE);
+	Image im(500,500,WHITE);
 	
-	Line *l = new Line(50,21,57,120,BLACK);
-	Line *q = new Line(70,70,100,70,RED);
+	Line *l = new Line(20,50,120,120,BLACK,false);
+	//Line *q = new Line(70,70,100,70,RED);
 	im.addtoqueue(l);
-	im.addtoqueue(q);
+	//im.addtoqueue(q);
 
 	//create a new point at 50x50 which is black in color.
 	/*for (int i = 0; i < 100; ++i)

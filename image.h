@@ -50,7 +50,7 @@ void Image::write(const char *filename)
 	std::ofstream f(filename);
 
 	f << "P6\n";
-	f << height << " " << width << '\n';
+	f << width << " " << height << '\n';
 	f << "255\n";
 
 	for (int i = 0; i < height; ++i)
@@ -68,6 +68,9 @@ void Image::write(const char *filename)
 */
 void Image::add(int y, int x, Pixel p, float alpha)
 {	
+	std::cerr<<"Drawing point "<<y<<','<<x<<' ';
+	std::cerr<<"Color:("<<(int)p.getRed()<<','<<(int)p.getGreen()<<','<<(int)p.getBlue()<<") ";
+	std::cerr<<"Alpha: "<<alpha<<'\n';
 	if (y >= 0 && y < height && x >= 0 && x < width)
 	{
 		image[y][x] = Alpha(p, image[y][x], alpha);

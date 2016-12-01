@@ -64,6 +64,8 @@ Pixel::Pixel(const char *hexcode)
 */
 Pixel Alpha(Pixel topcolor, Pixel bottomcolor, float alpha)
 {
+	if (alpha < 0) alpha = 0;
+	if (alpha > 1) alpha = 0;
 	int r = topcolor.getRed() * alpha + bottomcolor.getRed() * (1 - alpha);
 	int g = topcolor.getGreen() * alpha + bottomcolor.getGreen() * (1 - alpha);
 	int b = topcolor.getBlue() * alpha + bottomcolor.getBlue() * (1 - alpha);
