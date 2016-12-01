@@ -9,14 +9,15 @@
 
 class Image
 {
-public:
+
 	int height, width;
 	Pixel **image;
 	std::vector<Shape* > drawingqueue;	
 
+public:
 	Image(int, int, Pixel);
 	void write(const char *filename);
-
+	void add(int y, int x, Pixel p);
 	void addtoqueue(Shape*);
 	void drawqueue();	
 	~Image();
@@ -37,10 +38,6 @@ Image::Image(int height_ = 100, int width_ = 100, Pixel backColor = WHITE)
 			image[i][j] = backColor;	
 	}	
 }
-
-/*
-	If the color is defined from 
-*/
 
 /*
 	Writes the image to the file.
@@ -65,6 +62,16 @@ void Image::write(const char *filename)
 
 	f.close();
 }
+
+/*
+	Modifying a pixel in the image vector.
+*/
+void Image::add(int y, int x, Pixel p)
+{
+	if (y >= 0 && y < height && x >= 0 && x < width)
+		image[y][x] = p;
+}
+
 
 /*
 	Cleaning off stuff.

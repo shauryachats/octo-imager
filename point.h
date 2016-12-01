@@ -16,9 +16,12 @@ public:
 
 Point::Point(int x_ = 0, int y_ = 0, Pixel p_ = BLACK) : x(x_), y(y_), p(p_) {};
 
+/*
+	The draw() for Point which will be called.
+*/
 void Point::draw(Image *im)
 {
-	im->image[y][x] = p;
+	im->add(y,x,p);
 }
 
 #endif //POINT_H
