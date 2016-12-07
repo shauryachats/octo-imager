@@ -9,7 +9,7 @@ class Line : public Shape
 	//line from (x1,y1) to (x2,y2)
 	int x1, y1, x2, y2;
 	bool antialias;
-	Pixel p;
+	Pixel p; //color of the line
 public:
 	Line(int x1_, int y1_, int x2_, int y2_, Pixel p_, bool antialias_ = true) : 
 		x1(x1_), y1(y1_), x2(x2_), y2(y2_), p(p_), antialias(antialias_) {}
@@ -31,8 +31,9 @@ void Line::draw(Image *im)
 	{
 		float ans = y1 + yslope * (x - x1);
 		int ansy = (int)(ans + 0.5);
+
 		for (int i = ansy-eps; i <= ansy+eps; ++i)
-			im->add(i,x,p,1-fabs(i-ans));
+			im->add(x,i,p,1-fabs(i-ans));
  	}
 
  	if (!std::isinf(fabs(xslope)))
@@ -40,8 +41,9 @@ void Line::draw(Image *im)
  	{
  		float ans = x1 + (y - y1) * xslope;
  		int ansx = (int)(ans + 0.5);
- 		for (int i = ansx-eps; i <= ansx+eps; ++i)
- 			im->add(y,i,p,1-fabs(i-ans));
+ 
+  		for (int i = ansx-eps; i <= ansx+eps; ++i)
+ 			im->add(i,y,p,1-fabs(i-ans));
  	}
 }
 

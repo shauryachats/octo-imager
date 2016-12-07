@@ -66,11 +66,13 @@ void Image::write(const char *filename)
 /*
 	Modifying a pixel in the image vector.
 */
-void Image::add(int y, int x, Pixel p, float alpha)
+void Image::add(int x, int y, Pixel p, float alpha = 1.0)
 {	
+	#ifdef DEBUG
 	std::cerr<<"Drawing point "<<y<<','<<x<<' ';
 	std::cerr<<"Color:("<<(int)p.getRed()<<','<<(int)p.getGreen()<<','<<(int)p.getBlue()<<") ";
 	std::cerr<<"Alpha: "<<alpha<<'\n';
+	#endif
 	if (y >= 0 && y < height && x >= 0 && x < width)
 	{
 		image[y][x] = Alpha(p, image[y][x], alpha);

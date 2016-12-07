@@ -23,7 +23,7 @@ Point::Point(int x_ = 0, int y_ = 0, Pixel p_ = BLACK, float alpha_ = 1.0) :
 */
 void Point::draw(Image *im)
 {
-	im->add(y,x,p,alpha);
+	im->add(x,y,p,alpha);
 }
 
 #endif //POINT_H

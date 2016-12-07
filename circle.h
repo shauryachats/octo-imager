@@ -1,0 +1,36 @@
+#ifndef CIRCLE_H
+#define CIRCLE_H
+
+#include "image.h"
+#include "line.h"
+#include <cmath>
+
+class Circle : public Shape
+{
+	//center x, center y and radius
+	int cx, cy, r;
+	Pixel p; //color of the circle
+public:
+	Circle(int cx_, int cy_, int r_, Pixel p_) : cx(cx_), cy(cy_), r(r_), p(p_) {}
+	void draw(Image*);
+};
+
+/**
+	The circle method draws using the lines.
+	Inefficient, to change.
+*/
+void Circle::draw(Image *im)
+{
+	for (float deg = 0; deg <= 2*M_PI; deg += M_PI/180)
+	{
+		float y = cy + r*sin(deg);
+		float y_ = cy + r*sin(deg+M_PI/180);
+		float x = cx + r*cos(deg);
+		float x_ = cx + r*cos(deg+M_PI/180);
+		Line *l = new Line(x,y,x_,y_,p);
+		im->addtoqueue(l);
+		//		im->add(y , x , p);
+	}
+}
+
+#endif //CIRCLE_H
