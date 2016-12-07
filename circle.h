@@ -7,11 +7,12 @@
 
 class Circle : public Shape
 {
-	//center x, center y and radius
-	int cx, cy, r;
+	int cx, cy, r; //center x, center y and radius
+	int initial_angle, final_angle;
 	Pixel p; //color of the circle
 public:
-	Circle(int cx_, int cy_, int r_, Pixel p_) : cx(cx_), cy(cy_), r(r_), p(p_) {}
+	Circle(int cx_, int cy_, int r_, Pixel p_, int ia = 0, int fa = 360) : 
+		cx(cx_), cy(cy_), r(r_), p(p_), initial_angle(ia), final_angle(fa) {}
 	void draw(Image*);
 };
 
@@ -21,7 +22,7 @@ public:
 */
 void Circle::draw(Image *im)
 {
-	for (float deg = 0; deg <= 2*M_PI; deg += M_PI/180)
+	for (float deg = 2*M_PI/360*(float)initial_angle; deg <= 2*M_PI/360*(float)final_angle; deg += M_PI/180)
 	{
 		float y = cy + r*sin(deg);
 		float y_ = cy + r*sin(deg+M_PI/180);
@@ -29,7 +30,6 @@ void Circle::draw(Image *im)
 		float x_ = cx + r*cos(deg+M_PI/180);
 		Line *l = new Line(x,y,x_,y_,p);
 		im->addtoqueue(l);
-		//		im->add(y , x , p);
 	}
 }
 

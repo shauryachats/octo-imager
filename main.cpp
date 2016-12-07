@@ -13,7 +13,7 @@ int main()
 	//create an image file of 100x100, background in green color.
 	Image im(500,500,"#222222");
 	
-	Circle *c = new Circle(0,0,50,Pixel("#C0FFEE"));
+	Circle *c = new Circle(100,100,100,Pixel("#C0FFEE"),180,270);
 	im.addtoqueue(c);
 	Line *l = new Line(20,50,120,120,BLACK,false);
 	im.addtoqueue(l);
