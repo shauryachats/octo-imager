@@ -2,7 +2,7 @@
 #define COLOR_H
 
 #include <string>
-#include <stdlib.h>
+#include <cstdlib>
 
 struct Color
 {

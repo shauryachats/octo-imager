@@ -1,8 +1,7 @@
 #ifndef POINT_H
 #define POINT_H
 
-#include "shape.h"
-#include "image.h"
+#include "../image.h"
 
 class Point : public Shape
 {

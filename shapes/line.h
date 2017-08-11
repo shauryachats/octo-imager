@@ -1,7 +1,7 @@
 #ifndef LINE_H
 #define LINE_H
 
-#include "image.h"
+#include "../image.h"
 #include <cmath>
 #include <algorithm>
 

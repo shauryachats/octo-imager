@@ -1,7 +1,7 @@
 #ifndef CIRCLE_H
 #define CIRCLE_H
 
-#include "image.h"
+#include "../image.h"
 #include "line.h"
 #include <cmath>
 

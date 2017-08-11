@@ -3,6 +3,7 @@
 
 #include "color.h"
 #include "shape.h"
+
 #include <vector>
 #include <fstream>
 #include <iostream>
@@ -104,8 +105,6 @@ void Image::addtoqueue(Shape *shape)
 */
 void Image::drawqueue()
 {
-	//std::cerr<<drawingqueue.size()<<'\n';
-	
 	for (auto &shape : drawingqueue)
 		shape->draw(this);
 }
