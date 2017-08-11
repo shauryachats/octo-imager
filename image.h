@@ -27,7 +27,7 @@ public:
 /*
 	Parameterized ctor for background initialization.
 */
-Image::Image(int height_ = 100, int width_ = 100, Color backColor = WHITE)
+Image::Image(int width_ = 100, int height_ = 100, Color backColor = WHITE)
 {
 	height = height_, width = width_;
 	
@@ -105,7 +105,7 @@ void Image::draw(Shape *shape)
 */
 void Image::drawqueue()
 {
-	for (int i = 0; i < drawingqueue.size(); ++i)
+	for (int i = 0; i < (int)drawingqueue.size(); ++i)
 		drawingqueue[i]->draw(this);
 }
 

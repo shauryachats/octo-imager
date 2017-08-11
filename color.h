@@ -73,10 +73,13 @@ Color Alpha(Color topcolor, Color bottomcolor, float alpha)
 }
 
 //Predefined colours.
-const Color BLACK(0,0,0);
-const Color WHITE(255,255,255);
-const Color RED(255,0,0);
-const Color GREEN(0,255,0);
-const Color BLUE(0,0,255);
+const Color BLACK	("#000000");
+const Color WHITE	("#FFFFFF");
+const Color RED 	("#FF0000");
+const Color GREEN 	("#00FF00");
+const Color BLUE 	("#0000FF");
+const Color YELLOW	("#FFFF00");
+const Color CYAN	("#00FFFF");
+const Color MAGENTA	("#FF00FF");
 
 #endif //COLOR_H

@@ -11,18 +11,15 @@ int main()
 {
 	srand(time(NULL));
 	//create an image file of 100x100, background in green color.
-	Image im(200,200);
+	Image im(1366,768);
 	
-	Line *l = new Line(100, 120, 20, 120);
-	Line *l2 = new Line(100, 120, 100, 20, RED);
-	Line *l3 = new Line(20, 50, 100, 120, BLUE);
+	// Color colors[] = {YELLOW, BROWN, VIOLET};
 
-	Circle *c = new Circle(100, 100, 50);
-
-	im.draw(l);
-	im.draw(l2);
-	im.draw(l3);
-	im.draw(c);
+	for (int i = 0; i <= 1000; ++i)
+	{
+		Circle *c = new Circle(rand()%1366,rand()%768,rand()%100+10,MAGENTA);
+		im.draw(c);
+	}
 
 	im.write("a.ppm");
 }

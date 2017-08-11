@@ -8,10 +8,10 @@
 class Circle : public Shape
 {
 	int cx, cy, r; //center x, center y and radius
-	int initial_angle, final_angle;
+	double initial_angle, final_angle;
 	Color p; //color of the circle
 public:
-	Circle(int cx_, int cy_, int r_, Color p_ = BLACK, int ia = 0, int fa = 360)
+	Circle(int cx_, int cy_, int r_, Color p_ = BLACK, double ia = 0, double fa = 360)
 	{
 		cx = cx_;
 		cy = cy_;
@@ -29,7 +29,7 @@ public:
 */
 void Circle::draw(Image *im)
 {
-	for (float deg = 2*M_PI/360*(float)initial_angle; deg <= 2*M_PI/360*(float)final_angle; deg += M_PI/180)
+	for (float deg = M_PI/180*initial_angle; deg <= M_PI/180*final_angle; deg += M_PI/180)
 	{
 		float y = cy + r*sin(deg);
 		float y_ = cy + r*sin(deg+M_PI/180);
