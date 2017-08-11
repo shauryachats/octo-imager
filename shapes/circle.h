@@ -36,7 +36,7 @@ void Circle::draw(Image *im)
 		float x = cx + r*cos(deg);
 		float x_ = cx + r*cos(deg+M_PI/180);
 		Line *l = new Line(x,y,x_,y_,p);
-		im->addtoqueue(l);
+		im->draw(l);
 	}
 }
 

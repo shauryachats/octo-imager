@@ -26,7 +26,7 @@ Point::Point(int x_ = 0, int y_ = 0, Color p_ = BLACK, float alpha_ = 1.0)
 */
 void Point::draw(Image *im)
 {
-	im->draw(x,y,p,alpha);
+	im->putPixel(x,y,p,alpha);
 }
 
 #endif //POINT_H

@@ -50,7 +50,7 @@ void Line::draw(Image *image)
 
 		while (y <= y2)
 		{
-			image->draw(round(x),y,p,1.0);
+			image->putPixel(round(x),y,p,1.0);
 			y++;
 			x += slope;
 		}
@@ -67,7 +67,7 @@ void Line::draw(Image *image)
 
  		while (x <= x2)
  		{
- 			image->draw(x, round(y), p, 1.0);
+ 			image->putPixel(x, round(y), p, 1.0);
  			x++;
  			y += slope;
  		}

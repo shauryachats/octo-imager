@@ -14,13 +14,13 @@ class Image
 	int height, width;
 	Color **image;
 	std::vector<Shape*> drawingqueue;	
+	void drawqueue();	
 
 public:
 	Image(int, int, Color);
 	void write(const char *filename);
-	void draw(int, int, Color, float);
-	void addtoqueue(Shape*);
-	void drawqueue();	
+	void putPixel(int, int, Color, float);
+	void draw(Shape*);
 	~Image();
 };
 
@@ -67,7 +67,7 @@ void Image::write(const char *filename)
 /*
 	Modifying a pixel in the image buffer.
 */
-void Image::draw(int x, int y, Color p, float alpha = 1.0)
+void Image::putPixel(int x, int y, Color p, float alpha = 1.0)
 {	
 	#ifdef DEBUG
 	std::cerr<<"Drawing point "<<y<<','<<x<<' ';
@@ -95,7 +95,7 @@ Image::~Image()
 /*
 	Adds the given shape to the queue of drawingqueue.
 */
-void Image::addtoqueue(Shape *shape)
+void Image::draw(Shape *shape)
 {
 	drawingqueue.push_back(shape);
 }
