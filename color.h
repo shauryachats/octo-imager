@@ -82,4 +82,8 @@ const Color YELLOW	("#FFFF00");
 const Color CYAN	("#00FFFF");
 const Color MAGENTA	("#FF00FF");
 
+Color getRandomColor()
+{
+	return Color(rand()%256,rand()%256,rand()%256);
+}
 #endif //COLOR_H
