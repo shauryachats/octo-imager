@@ -9,10 +9,17 @@ class Circle : public Shape
 {
 	int cx, cy, r; //center x, center y and radius
 	int initial_angle, final_angle;
-	Pixel p; //color of the circle
+	Color p; //color of the circle
 public:
-	Circle(int cx_, int cy_, int r_, Pixel p_, int ia = 0, int fa = 360) : 
-		cx(cx_), cy(cy_), r(r_), p(p_), initial_angle(ia), final_angle(fa) {}
+	Circle(int cx_, int cy_, int r_, Color p_ = BLACK, int ia = 0, int fa = 360)
+	{
+		cx = cx_;
+		cy = cy_;
+		r = r_;
+		p = p_;
+		initial_angle = ia;
+		final_angle = fa;
+	}
 	void draw(Image*);
 };
 

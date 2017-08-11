@@ -15,7 +15,12 @@ class Image;
 class Shape
 {
 public:
-	virtual void draw(Image *image) {};
+	virtual void draw(Image*);
 };
+
+void Shape::draw(Image *image)
+{
+
+}
 
 #endif //SHAPE_H

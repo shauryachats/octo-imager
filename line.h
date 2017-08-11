@@ -3,48 +3,75 @@
 
 #include "image.h"
 #include <cmath>
+#include <algorithm>
 
 class Line : public Shape
 {
 	//line from (x1,y1) to (x2,y2)
 	int x1, y1, x2, y2;
 	bool antialias;
-	Pixel p; //color of the line
+	Color p; //color of the line
 public:
-	Line(int x1_, int y1_, int x2_, int y2_, Pixel p_, bool antialias_ = true) : 
-		x1(x1_), y1(y1_), x2(x2_), y2(y2_), p(p_), antialias(antialias_) {}
+	Line(int x1_, int y1_, int x2_, int y2_, Color p_ = BLACK, bool antialias_ = true)
+	{
+		x1 = x1_;
+		y1 = y1_;
+		x2 = x2_;
+		y2 = y2_;
+		p = p_;
+		antialias = antialias_;
+	}
 	void draw(Image*);
 };
 
-void Line::draw(Image *im)
+//TODO : Add antialiasing
+void Line::draw(Image *image)
 {
-	float yslope = (float)(y2 - y1)/(x2 - x1);
-	float xslope = (float)(x2 - x1)/(y2 - y1);
+	int ydiff = y2 - y1;
+	int xdiff = x2 - x1;
 
-	//degree of antialiasing.
-	int eps = 1;
-	if (antialias == false) eps = 0; 
+	double slope = ydiff;
+	slope /= xdiff;
 
-	//if slope is not infinity, draw.
-	if (!std::isinf(fabs(yslope)))
-	for (int x = std::min(x1,x2); x <= std::max(x1,x2); ++x)
+	double x, y;
+
+	//drawing with major movement in y.
+	if (abs(ydiff) >= abs(xdiff))
 	{
-		float ans = y1 + yslope * (x - x1);
-		int ansy = (int)(ans + 0.5);
+		slope = 1/slope;
 
-		for (int i = ansy-eps; i <= ansy+eps; ++i)
-			im->add(x,i,p,1-fabs(i-ans));
- 	}
+		if (y1 > y2) 
+		{
+			std::swap(y1, y2);
+			std::swap(x1, x2);
+		}
 
- 	if (!std::isinf(fabs(xslope)))
- 	for (int y = std::min(y1,y2); y <= std::max(y1,y2); ++y)
+		x = x1, y = y1;
+
+		while (y <= y2)
+		{
+			image->draw(round(x),y,p,1.0);
+			y++;
+			x += slope;
+		}
+	}
+	else //drawing with major movement in x.
  	{
- 		float ans = x1 + (y - y1) * xslope;
- 		int ansx = (int)(ans + 0.5);
- 
-  		for (int i = ansx-eps; i <= ansx+eps; ++i)
- 			im->add(i,y,p,1-fabs(i-ans));
- 	}
+ 		if (x1 > x2) 
+ 		{
+ 			std::swap(x1, x2);
+ 			std::swap(y1, y2);
+ 		}
+
+ 		x = x1, y = y1;
+
+ 		while (x <= x2)
+ 		{
+ 			image->draw(x, round(y), p, 1.0);
+ 			x++;
+ 			y += slope;
+ 		}
+	}
 }
 
 #endif //LINE_H

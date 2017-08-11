@@ -1,3 +1,8 @@
 *.ppm
 main
+circle
+image
+line
+point
+shape
 Makefile

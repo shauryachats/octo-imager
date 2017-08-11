@@ -1,7 +1,7 @@
 #ifndef IMAGE_H
 #define IMAGE_H
 
-#include "pixel.h"
+#include "color.h"
 #include "shape.h"
 #include <vector>
 #include <fstream>
@@ -11,13 +11,13 @@ class Image
 {
 
 	int height, width;
-	Pixel **image;
-	std::vector<Shape* > drawingqueue;	
+	Color **image;
+	std::vector<Shape*> drawingqueue;	
 
 public:
-	Image(int, int, Pixel);
+	Image(int, int, Color);
 	void write(const char *filename);
-	void add(int, int, Pixel, float);
+	void draw(int, int, Color, float);
 	void addtoqueue(Shape*);
 	void drawqueue();	
 	~Image();
@@ -26,14 +26,14 @@ public:
 /*
 	Parameterized ctor for background initialization.
 */
-Image::Image(int height_ = 100, int width_ = 100, Pixel backColor = WHITE)
+Image::Image(int height_ = 100, int width_ = 100, Color backColor = WHITE)
 {
 	height = height_, width = width_;
 	
-	image = new Pixel*[height];
+	image = new Color*[height];
 	for (int i = 0; i < height; ++i)
 	{
-		image[i] = new Pixel[width];
+		image[i] = new Color[width];
 		for (int j = 0; j < width; ++j)
 			image[i][j] = backColor;	
 	}	
@@ -56,7 +56,7 @@ void Image::write(const char *filename)
 	for (int i = 0; i < height; ++i)
 		for (int j = 0; j < width; ++j)
 		{
-			Pixel p = image[i][j];
+			Color p = image[i][j];
 			f << p.getRed() << p.getGreen() << p.getBlue();
 		}
 
@@ -64,15 +64,16 @@ void Image::write(const char *filename)
 }
 
 /*
-	Modifying a pixel in the image vector.
+	Modifying a pixel in the image buffer.
 */
-void Image::add(int x, int y, Pixel p, float alpha = 1.0)
+void Image::draw(int x, int y, Color p, float alpha = 1.0)
 {	
 	#ifdef DEBUG
 	std::cerr<<"Drawing point "<<y<<','<<x<<' ';
 	std::cerr<<"Color:("<<(int)p.getRed()<<','<<(int)p.getGreen()<<','<<(int)p.getBlue()<<") ";
 	std::cerr<<"Alpha: "<<alpha<<'\n';
 	#endif
+
 	if (y >= 0 && y < height && x >= 0 && x < width)
 	{
 		image[y][x] = Alpha(p, image[y][x], alpha);
@@ -104,8 +105,9 @@ void Image::addtoqueue(Shape *shape)
 void Image::drawqueue()
 {
 	//std::cerr<<drawingqueue.size()<<'\n';
-	for (int i = 0; i < drawingqueue.size(); ++i)
-		drawingqueue[i]->draw(this);
+	
+	for (auto &shape : drawingqueue)
+		shape->draw(this);
 }
 
 

@@ -11,12 +11,14 @@ int main()
 {
 	srand(time(NULL));
 	//create an image file of 100x100, background in green color.
-	Image im(500,500,"#222222");
+	Image im(200,200);
 	
-	Circle *c = new Circle(100,100,100,Pixel("#C0FFEE"),180,270);
-	im.addtoqueue(c);
-	Line *l = new Line(20,50,120,120,BLACK,false);
+	Line *l = new Line(100, 120, 20, 120);
+	Line *l2 = new Line(100, 120, 100, 20, RED);
+	Line *l3 = new Line(20, 50, 100, 120, BLUE);
 	im.addtoqueue(l);
+	im.addtoqueue(l2);
+	im.addtoqueue(l3);
 
 	im.write("a.ppm");
 }

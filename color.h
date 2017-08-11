@@ -1,18 +1,18 @@
-#ifndef PIXEL_H
-#define PIXEL_H
+#ifndef COLOR_H
+#define COLOR_H
 
 #include <string>
 #include <stdlib.h>
 
-struct Pixel
+struct Color
 {
 	//for more memory saving, use unsigned char (0 - 255)
 	unsigned char r, g, b;
 
 	//ctors.
-	Pixel() { r = g = b = 0; }
-	Pixel(int r_, int g_, int b_) : r(r_), g(g_), b(b_) {};
-	Pixel(const char *s);
+	Color() { r = g = b = 0; }
+	Color(int r_, int g_, int b_) : r(r_), g(g_), b(b_) {};
+	Color(const char *s);
 
 	//getters
 	unsigned char getRed() { return r; }
@@ -27,15 +27,15 @@ struct Pixel
 	void setRGB(const char *s);
 
 	//== overrating
-	bool operator==(const Pixel &p) {
+	bool operator==(const Color &p) {
 		return (r == p.r && g == p.g && b == p.b);
 	}
 };
 
 /**
-	Defining pixel colors with hexcode.
+	Defining Color colors with hexcode.
 */
-void Pixel::setRGB(const char *hexcode)
+void Color::setRGB(const char *hexcode)
 {
 	std::string str(hexcode);
 	char *p;
@@ -49,7 +49,7 @@ void Pixel::setRGB(const char *hexcode)
 /**
 	Ctor with hexcode.
 */
-Pixel::Pixel(const char *hexcode)
+Color::Color(const char *hexcode)
 {
 	std::string str(hexcode);
 	char *p;
@@ -60,23 +60,23 @@ Pixel::Pixel(const char *hexcode)
 }
 
 /**
-	Alpha(Pixel topcolor, Pixel bottomcolor, float alpha) 
+	Alpha(Color topcolor, Color bottomcolor, float alpha) 
 */
-Pixel Alpha(Pixel topcolor, Pixel bottomcolor, float alpha)
+Color Alpha(Color topcolor, Color bottomcolor, float alpha)
 {
 	if (alpha < 0) alpha = 0;
 	if (alpha > 1) alpha = 0;
 	int r = topcolor.getRed() * alpha + bottomcolor.getRed() * (1 - alpha);
 	int g = topcolor.getGreen() * alpha + bottomcolor.getGreen() * (1 - alpha);
 	int b = topcolor.getBlue() * alpha + bottomcolor.getBlue() * (1 - alpha);
-	return Pixel(r,g,b);
+	return Color(r,g,b);
 }
 
 //Predefined colours.
-const Pixel BLACK(0,0,0);
-const Pixel WHITE(255,255,255);
-const Pixel RED(255,0,0);
-const Pixel GREEN(0,255,0);
-const Pixel BLUE(0,0,255);
+const Color BLACK(0,0,0);
+const Color WHITE(255,255,255);
+const Color RED(255,0,0);
+const Color GREEN(0,255,0);
+const Color BLUE(0,0,255);
 
-#endif //PIXEL_H
+#endif //COLOR_H
