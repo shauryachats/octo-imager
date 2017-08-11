@@ -17,9 +17,12 @@ int main()
 	Line *l2 = new Line(100, 120, 100, 20, RED);
 	Line *l3 = new Line(20, 50, 100, 120, BLUE);
 
+	Circle *c = new Circle(100, 100, 50);
+
 	im.draw(l);
 	im.draw(l2);
 	im.draw(l3);
+	im.draw(c);
 
 	im.write("a.ppm");
 }

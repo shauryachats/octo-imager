@@ -105,8 +105,8 @@ void Image::draw(Shape *shape)
 */
 void Image::drawqueue()
 {
-	for (auto &shape : drawingqueue)
-		shape->draw(this);
+	for (int i = 0; i < drawingqueue.size(); ++i)
+		drawingqueue[i]->draw(this);
 }
 
 
